@@ -65,6 +65,10 @@ html,body{height:100%;margin:0}
 .scene{margin:.6vh -22px 0!important}.sky .info{text-align:right}.sky h2,.sunrise{width:max-content;max-width:62%}
 .sig{grid-template-columns:auto minmax(0,1fr)!important}.pm{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 .facts{grid-template-columns:repeat(4,minmax(0,1fr))!important}.fa p{word-break:keep-all}.ftip,.sig .tip{word-break:keep-all;line-height:1.25}
+/* 슬라이드 넘김을 자연스럽게 (2026-11-17): 늘 오른쪽에서 들어와 왼쪽으로 사라짐 + 부드럽게 겹쳐 바뀜 */
+.track{display:block!important;position:relative;height:100%;transform:none!important;transition:none!important}
+.track>.slide{position:absolute;inset:0;opacity:0;transform:translateX(8%);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.33,0,.2,1);pointer-events:none}
+.track>.slide.on{opacity:1;transform:none;pointer-events:auto}.track>.slide.out{opacity:0;transform:translateX(-8%)}
 /* 대피카드 슬라이드 (2026-11-17) */
 .slide:has(.evac){grid-template-rows:1fr}.evac{height:100%;display:flex;flex-direction:column;justify-content:space-around;gap:1.2vh;border:.5vh solid #ff922b}
 .evac h2{margin:0;text-align:center;font-size:clamp(28px,4.6vh,60px);color:#e8590c}
@@ -130,7 +134,9 @@ sky();setInterval(sky,20000)})();
 (function(){const s=document.getElementById('scn');function fit(){const b=s.getBoundingClientRect();if(!b.height)return;const w=Math.max(300,240*b.width/b.height);s.setAttribute('viewBox',(150-w/2).toFixed(1)+' 0 '+w.toFixed(1)+' 240')}
 fit();addEventListener('resize',fit);setTimeout(fit,500)})();
 // 2026-11-17 대표 지시: 날씨·미세먼지 ↔ 산불 조심 화면이 옆으로 밀리며 저절로 바뀜 (15초마다, 아래 버튼으로도 바꿈)
-(function(){const t=document.getElementById('trk'),b=[...document.querySelectorAll('.dots button')];let i=0;
-function go(n){i=n%b.length;t.style.transform='translateX('+(-100*i)+'%)';b.forEach((x,k)=>x.classList.toggle('on',k===i))}
+(function(){const t=document.getElementById('trk'),b=[...document.querySelectorAll('.dots button')],S=[...t.children];let i=0;S[0].classList.add('on');
+function go(n){const j=n%b.length;if(j===i)return;const p=S[i];p.classList.remove('on');p.classList.add('out');
+S[j].classList.remove('out');S[j].classList.add('on');setTimeout(()=>{p.style.transition='none';p.classList.remove('out');void p.offsetWidth;p.style.transition=''},1200);
+i=j;b.forEach((x,k)=>x.classList.toggle('on',k===i))}
 b.forEach((x,k)=>x.onclick=()=>{go(k);clearInterval(tm);tm=setInterval(()=>go(i+1),15000)});let tm=setInterval(()=>go(i+1),15000)})()</script>
 </body></html>
