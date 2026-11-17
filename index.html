@@ -1,5 +1,6 @@
 <!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
-<meta http-equiv=refresh content=300><title>오늘의 날씨</title>
+<script>/* 5분마다 새로고침 — 인터넷이 끊겼으면 새로고침하지 않고 지금 화면을 그대로 둔다 (2026-11-17) */
+setInterval(()=>{fetch(location.href,{cache:'no-store',method:'HEAD'}).then(r=>{if(r.ok)location.reload()}).catch(()=>{})},300000)</script><title>오늘의 날씨</title>
 <link rel=stylesheet href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Pretendard,'Malgun Gothic',sans-serif;color:#1d2433;background:#eef4ff}
@@ -66,7 +67,7 @@
 <div class=pm><div>미세먼지<b>8</b>좋음</div><div>초미세먼지<b>6</b>좋음</div></div></div></div>
 </div><div class=slide><div class='box fire'><h2>🔥 산불 조심</h2><div class=fseason>🍂 지금은 <b>산불조심기간</b>이에요 (가을 11/1~12/15, 봄 2/1~5/15)</div><div class=fgauge><div class='fl' style='--c:#22c55e'><span>🌲</span><b>낮음</b></div><div class='fl on' style='--c:#facc15'><span>🙂</span><b>보통</b></div><div class='fl' style='--c:#ff9f1a'><span>⚠️</span><b>높음</b></div><div class='fl' style='--c:#ff4d4d'><span>🔥</span><b>매우높음</b></div></div><div class=ftip style='color:#facc15'>산불을 조심해요. 산이나 들에서 불을 피우지 않아요.</div><div class=facts><div class=fa><span>🚫</span><p>산이나 들에서<br>불장난을 하지 않아요</p></div><div class=fa><span>🙋</span><p>연기나 불을 보면<br>바로 어른께 알려요 (119)</p></div><div class=fa><span>😷</span><p>젖은 수건으로<br>코와 입을 막아요</p></div><div class=fa><span>🏃</span><p>선생님을 따라<br>대피 장소로 가요</p></div></div><div class=fnote>자료: 산림청 산불위험예보 2026-11-17 11시 (여주시 평균 지수 52, 최고 78) · 등급 기준 51 미만 낮음 / 51~65 보통 / 66~85 높음 / 86 이상 매우높음</div></div></div></div></div>
 <div class=dots><button data-i=0 class=on>🌤 날씨·미세먼지</button><button data-i=1>🔥 산불 조심</button></div>
-<div class=note>2026-11-17 11:46 기준 · 5분마다 저절로 새로 받아요 · 시계·해·달은 실시간 · 날씨 예보 자료(Open-Meteo)</div>
+<div class=note>2026-11-17 11:53 기준 · 5분마다 저절로 새로 받아요 · 시계·해·달은 실시간 · 날씨 예보 자료(Open-Meteo)</div>
 </div>
 <script>(function(){const W='일월화수목금토';function f(){const d=new Date(),p=n=>String(n).padStart(2,'0');
 document.getElementById('d').textContent=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 '+W[d.getDay()]+'요일';
